@@ -28,3 +28,10 @@ class BancoDados:
                 contas.append(
                     Conta(c["numero"], c["titular"], c["saldo"])
                 )
+
+        return contas
+    
+    def salvar(self, contas):
+        dados = [c.to_dict() for c in contas]
+        with open(CAMINHO_ARQUIVO, "w") as f:
+            json.dump(dados, f, indent=4)
